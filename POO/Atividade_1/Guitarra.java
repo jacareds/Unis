@@ -17,6 +17,7 @@ public class Guitarra {
 	this.madeira = madeira;
 	this.preco = preco;
 
+//Criando as funções
 // numeroSerie
 }
 public  String getNumeroSerie() {
@@ -74,7 +75,7 @@ public static void main(String[] args) {
 		Guitarra minhaGuitarra = new Guitarra("01020304", "fender", "telecaster", "elétrica", "mogno", 1500);
 
 
-	//Testando os dados da classe, imprimindo a saida simples no terminal
+	//Testando os dados da classe, imprimindo a saida simples no terminal(chamando a classe com a função
 	System.out.println(minhaGuitarra.getNumeroSerie());
 	System.out.println(minhaGuitarra.getMadeira());
 	System.out.println(minhaGuitarra.getPreco());
