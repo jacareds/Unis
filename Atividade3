@@ -1,0 +1,147 @@
+# -*- coding: utf-8 -*-
+
+###########################################################################
+## Python code generated with wxFormBuilder (version Oct 26 2018)
+## http://www.wxformbuilder.org/
+##
+## PLEASE DO *NOT* EDIT THIS FILE!
+###########################################################################
+
+import wx
+import wx.xrc
+
+###########################################################################
+## Class MyFrame1
+###########################################################################
+
+class MyFrame1 ( wx.Frame ):
+
+	def __init__( self, parent ):
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 559,309 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		bSizer1 = wx.BoxSizer( wx.VERTICAL )
+
+		self.txtKg = wx.StaticText( self, wx.ID_ANY, u"Informe seu peso em Kg!", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.txtKg.Wrap( -1 )
+
+		bSizer1.Add( self.txtKg, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.txtKgCampo = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.txtKgCampo.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+		bSizer1.Add( self.txtKgCampo, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.txtAlt = wx.StaticText( self, wx.ID_ANY, u"Informe sua altura!", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.txtAlt.Wrap( -1 )
+
+		bSizer1.Add( self.txtAlt, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.txtAltCampo = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.txtAltCampo.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+		bSizer1.Add( self.txtAltCampo, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.m_button1 = wx.Button( self, wx.ID_ANY, u"OK", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer1.Add( self.m_button1, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		self.txtSaida = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.txtSaida.SetMaxLength( 0 )
+		self.txtSaida.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+		bSizer1.Add( self.txtSaida, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		gSizer1 = wx.GridSizer( 0, 2, 0, 0 )
+
+		gSizer1.SetMinSize( wx.Size( -2,-2 ) )
+		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"Resultados calculados:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText6.Wrap( -1 )
+
+		gSizer1.Add( self.m_staticText6, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.TOP|wx.BOTTOM|wx.LEFT, 5 )
+
+		self.txtRes = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_LEFT )
+		self.txtRes.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+		gSizer1.Add( self.txtRes, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+
+
+		bSizer1.Add( gSizer1, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 10 )
+
+
+		self.SetSizer( bSizer1 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.m_button1.Bind( wx.EVT_BUTTON, self.func_OK )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def func_OK( self, event ):
+		event.Skip()
+
+
+
+# coding=utf-8
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+import frame_OK
+import wx
+
+class frameOK(frame_OK.MyFrame1):
+    def __init__(self, parent):
+        frame_OK.MyFrame1.__init__(self, parent)
+
+    def func_OK(self, event):
+        peso = float(self.txtKgCampo.GetValue())
+        alt = float(self.txtAltCampo.GetValue())
+        imc = peso / (alt ** 2)
+        self.txtSaida.SetValue("Seu imc é   {:.1f}...".format(imc))
+        if imc < 18.5:
+            self.txtRes.SetValue("Abaixo do peso!")
+        elif imc >= 18.5 and imc < 25:
+            self.txtRes.SetValue("Peso normal!")
+        elif imc >= 25 and imc < 30:
+            self.txtRes.SetValue("Sobre peso!")
+        elif imc >= 30 and imc < 40:
+            self.txtRes.SetValue("Obesidade!")
+        elif imc >= 40:
+            self.txtRes.SetValue("Obesidade mórbida!")
+
+        event.Skip()
+
+app = wx.App()
+frame = frameOK(None)
+frame.Show()
+app.MainLoop()
+
+
+#peso = float(input("Digite seu peso em Kg!"))
+#alt = float(input("Digite sua altura!"))
+#mc = peso / (alt ** 2)
+
+"""print ("Seu imc é {:.1f}".format(imc))
+if imc < 18.5:
+    print("Você está abaixo do peso")
+elif imc >= 18.5 and imc < 25:
+    print("Peso normal!")
+elif imc >= 25 and imc < 30:
+    print ("Você está com sobre peso!")
+elif imc >= 30 and imc < 40:
+    print("Você está com obesidade!")
+elif imc >= 40:
+    print("Você esta com obesidade mórbida!")
+    """
+
+
+
+
+
